@@ -1,14 +1,24 @@
-FROM node:18-alpine
+# Use a Python base image
+FROM python:3.9-slim-buster 
 
+# Set environment variables
+#ENV PYTHONDONTWRITEBYTECODE 1
+#ENV PYTHONUNBUFFERED 1
+
+# Set the working directory
 WORKDIR /app
 
-COPY package.json ./
+# Copy requirements.txt
+COPY requirements.txt requirements.txt
 
-RUN npm install
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY src ./src
+# Copy the app code
+COPY . . 
 
+# Expose the port
 EXPOSE 3000
 
-CMD ["node", "src/index.js"]
-
+# Run the app using Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:3000", "app.app:app"]
