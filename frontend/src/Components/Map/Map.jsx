@@ -67,16 +67,26 @@ const Map = ({ apiKey, coords = [] }) => {
         const marker = new maplibregl.Marker()
           .setLngLat(coord)
           .addTo(map.current);
-
+  
         marker.getElement().addEventListener('click', () => {
+          // Set the selected pin
           setSelectedPin(index);
+  
+          // Scroll to the building details section
           if (sectionRefs.current[index]) {
             sectionRefs.current[index].scrollIntoView({ behavior: 'smooth' });
           }
+  
+          // Expand the dropdown for the building details
+          setExpandedBuildings((prev) => ({
+            ...prev,
+            [index]: true,
+          }));
         });
       });
     }
   }, [coords]);
+  
 
   useEffect(() => {
     if (map.current) {
