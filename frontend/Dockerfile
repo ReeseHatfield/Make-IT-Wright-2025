@@ -5,12 +5,10 @@ WORKDIR /app
 COPY app/package*.json ./
 
 RUN npm install
+RUN npm install maplibre-gl
 
-ENV NODE_ENV=development
-
-COPY app ./
+COPY . ./
 
 EXPOSE 5173
 
-CMD ["npm", "run", "dev", "--", "--host"]
-
+CMD ["npm", "run", "dev"]
