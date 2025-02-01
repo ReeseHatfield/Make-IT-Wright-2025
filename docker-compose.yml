@@ -20,7 +20,6 @@ services:
       - "3000:3000"
     volumes:
       - ./backend/app:/app
-      - /app/node_modules
     environment:
       - FLASK_ENV=development
     command: ["gunicorn", "--bind", "0.0.0.0:3000", "app:app"]
