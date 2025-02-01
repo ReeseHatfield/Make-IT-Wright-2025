@@ -23,7 +23,7 @@ def get_locations():
     locations = []
     for building in directory["buildings"]:
         location = building.get("location")
-        if location:
+        if location and isinstance(location["latitude"], float) and isinstance(location["longitude"], float):
             locations.append(location)
     
     # Return the list of locations as a JSON response
