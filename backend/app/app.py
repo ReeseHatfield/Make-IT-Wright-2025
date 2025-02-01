@@ -7,14 +7,22 @@ app = Flask(__name__)
 CORS(app)
 
 # Reads in the local data.json file
-data = open('../data.json').read()
+data = open('data.json').read()
 directory = json.loads(data)
+
+@app.route('/getkey')
+def getkey():
+    return {
+        # get the contents of key.txt and return it
+        'key': open('../key.txt').read()
+    }
 
 # Helper function to save the directory to the JSON file
 def save_directory():
     try:
-        with open('../data.json', 'w') as outfile:
-            json.dump(directory, outfile, indent=4)
+        outfile = open('data.json', 'w+')
+        json.dump(directory, outfile, indent=4)
+        outfile.close()
     except Exception as e:
         print("Error saving directory:", e)
         raise
@@ -85,17 +93,6 @@ def get_employees(name):
     building = get_building_by_name(name)
     if building:
         return jsonify(building['employee_list'])
-    return jsonify({'message': 'Building not found'}), 404
-
-# Endpoint to get an employee by name
-@app.route('/building/<string:name>/employee/<string:employee_name>', methods=['GET'])
-def get_employee(name, employee_name):
-    building = get_building_by_name(name)
-    if building:
-        employee = next((emp for emp in building['employee_list']['CEG'] if emp['name'].lower() == employee_name.lower()), None)
-        if employee:
-            return jsonify(employee)
-        return jsonify({'message': 'Employee not found'}), 404
     return jsonify({'message': 'Building not found'}), 404
 
 # Endpoint to calculate the distance between two locations
