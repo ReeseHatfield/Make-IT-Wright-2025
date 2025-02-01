@@ -198,7 +198,7 @@ def get_average_location():
     if latitudes and longitudes:
         avg_lat = sum(latitudes) / len(latitudes)
         avg_lon = sum(longitudes) / len(longitudes)
-        return jsonify({'average_location': {'latitude': avg_lat, 'longitude': avg_lon}})
+        return jsonify({'latitude': avg_lat, 'longitude': avg_lon})
     return jsonify({'message': 'No locations found'}), 404
 
 # Start the Flask app
