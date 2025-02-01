@@ -45,8 +45,8 @@ def search():
             # If value is a dictionary or list, recursively search inside
             elif isinstance(value, dict):
                 search_dict(value)
-            # Avoid searching for the 'ceg' key
-            elif isinstance(value, list) and search_string.lower() != "ceg":
+            # Avoid searching for the 'employee' key
+            elif isinstance(value, list) and search_string.lower() != "employee":
                 for item in value:
                     search_dict(item)
 

@@ -27,7 +27,7 @@
                 }
             ],
             "employee_list": {
-                "CEG": [
+                "employee": [
                     {
                         "name": "Tech Support",
                         "phone_number": "+1-800-555-0199",
@@ -48,7 +48,7 @@
             "photo_path": "/images/east_wing.jpg",
             "desk_number": "202",
             "hours": "10:00 AM - 4:00 PM",
-            "description": "The East Wing is dedicated to the human resources and marketing CEG.",
+            "description": "The East Wing is dedicated to the human resources and marketing employee.",
             "location": {
                 "latitude": 40.7306,
                 "longitude": -73.9352
@@ -70,7 +70,7 @@
                 }
             ],
             "employee_list": {
-                "CEG": [
+                "employee": [
                     {
                         "name": "Human Resources",
                         "phone_number": "+1-800-555-0150",
@@ -120,7 +120,7 @@
                 }
             ],
             "employee_list": {
-                "CEG": [
+                "employee": [
                     {
                         "name": "namae",
                         "phone_number": "asdfasdfasdf",
@@ -156,7 +156,7 @@
                 }
             ],
             "employee_list": {
-                "CEG": [
+                "employee": [
                     {
                         "name": "JSKDFJAKSDFJ",
                         "phone_number": "ASDF",
@@ -178,7 +178,7 @@
             "description": "WFJ",
             "rooms": [],
             "employee_list": {
-                "CEG": []
+                "employee": []
             }
         },
         {
@@ -193,7 +193,7 @@
             "description": "jfkfj",
             "rooms": [],
             "employee_list": {
-                "CEG": []
+                "employee": []
             }
         },
         {
@@ -208,7 +208,7 @@
             "description": "asdfjlaskdjflaksdjflkjasdf",
             "rooms": [],
             "employee_list": {
-                "CEG": []
+                "employee": []
             }
         },
         {
@@ -223,7 +223,7 @@
             "description": "",
             "rooms": [],
             "employee_list": {
-                "CEG": []
+                "employee": []
             }
         },
         {
@@ -246,7 +246,7 @@
                 }
             ],
             "employee_list": {
-                "CEG": [
+                "employee": [
                     {
                         "name": "",
                         "phone_number": "",
@@ -268,7 +268,7 @@
             "description": "",
             "rooms": [],
             "employee_list": {
-                "CEG": []
+                "employee": []
             }
         },
         {
@@ -283,7 +283,7 @@
             "description": "",
             "rooms": [],
             "employee_list": {
-                "CEG": []
+                "employee": []
             }
         },
         {
@@ -298,7 +298,7 @@
             "description": "",
             "rooms": [],
             "employee_list": {
-                "CEG": []
+                "employee": []
             }
         },
         {
@@ -313,7 +313,7 @@
             "description": "",
             "rooms": [],
             "employee_list": {
-                "CEG": []
+                "employee": []
             }
         },
         {
@@ -328,7 +328,7 @@
             "description": "",
             "rooms": [],
             "employee_list": {
-                "CEG": []
+                "employee": []
             }
         }
     ]

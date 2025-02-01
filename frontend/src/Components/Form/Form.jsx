@@ -65,7 +65,7 @@ export default function Form({ apiKey }) {
     hours: "",
     description: "",
     rooms: [],
-    employee_list: { CEG: [] },
+    employee_list: { employee: [] },
   });
 
   const updateField = (field, value) => {
@@ -115,8 +115,8 @@ export default function Form({ apiKey }) {
     setData((prev) => ({
       ...prev,
       employee_list: {
-        CEG: [
-          ...prev.employee_list.CEG,
+        employee: [
+          ...prev.employee_list.employee,
           { name: "", phone_number: "", office: "", hours: "" },
         ],
       },
@@ -124,11 +124,11 @@ export default function Form({ apiKey }) {
   };
 
   const updateEmployee = (index, field, value) => {
-    const newEmployees = [...data.employee_list.CEG];
+    const newEmployees = [...data.employee_list.employee];
     newEmployees[index][field] = value;
     setData((prev) => ({
       ...prev,
-      employee_list: { CEG: newEmployees },
+      employee_list: { employee: newEmployees },
     }));
   };
 
@@ -224,7 +224,7 @@ export default function Form({ apiKey }) {
         ))}
 
         <button onClick={addEmployee}>Add Employee</button>
-        {data.employee_list.CEG.map((employee, index) => (
+        {data.employee_list.employee.map((employee, index) => (
           <div key={index} className="employee-container">
             <input
               placeholder="Employee Name"
