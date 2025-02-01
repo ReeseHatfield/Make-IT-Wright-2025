@@ -21,4 +21,3 @@ We offer a comprehensive solution for you to compartmentalize your data in an ea
 ## Demonstration
 
 Check out the demonstration video [here](https://www.youtube.com/watch?v=iHJwXn6Rois)
-[![Watch the video](https://img.youtube.com/vi/iHJwXn6Rois/hqdefault.jpg)](https://www.youtube.com/watch?v=iHJwXn6Rois)
