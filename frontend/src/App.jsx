@@ -43,8 +43,8 @@ function App() {
         <Route
           path="/home"
           element={
-            <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-              <h1>Darkleaf Labs</h1>
+            <div style={{ padding: "30px", fontFamily: "Arial, sans-serif" }}>
+              <h1 style={{ textAlign: "center", fontSize: "3rem" }}>Darkleaf Labs</h1>
               {key ? <Map apiKey={key} coords={coords} /> : <p>Loading...</p>}
             </div>
           }
@@ -52,8 +52,7 @@ function App() {
         <Route
           path="/login"
           element={
-            <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-              <h1>Login</h1>
+            <div style={{ padding: "30px", fontFamily: "Arial, sans-serif" }}>
               {key ? <Login /> : <p>Loading...</p>}
             </div>
           }
@@ -61,8 +60,7 @@ function App() {
         <Route
           path="/"
           element={
-            <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-              <h1>Login</h1>
+            <div style={{ padding: "30px", fontFamily: "Arial, sans-serif" }}>
               {key ? <Login /> : <p>Loading...</p>}
             </div>
           }

@@ -52,14 +52,17 @@ export default function Login() {
         placeholder="Username"
         value={data.username}
         onChange={(e) => updateField("username", e.target.value)}
+        className="input-field"
       />
       <input
         type="password"
         placeholder="Password"
         value={data.password}
         onChange={(e) => updateField("password", e.target.value)}
+        className="input-field"
       />
-      <button onClick={handleSubmit}>Login</button>
+      <button onClick={handleSubmit} className="login-button">Login</button>
     </div>
   );
+  
 }

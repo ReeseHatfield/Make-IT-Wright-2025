@@ -423,7 +423,7 @@ const Map = ({ apiKey, coords = [] }) => {
               cursor: 'pointer',
             }}
           >
-            BIG ASS PLUS BUTTON
+            +
           </button>
         </div>
       </div>
