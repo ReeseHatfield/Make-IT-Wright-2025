@@ -270,6 +270,36 @@
             "employee_list": {
                 "CEG": []
             }
+        },
+        {
+            "name": "Hello",
+            "location": {
+                "latitude": "",
+                "longitude": ""
+            },
+            "photo_path": "",
+            "desk_number": "",
+            "hours": "",
+            "description": "",
+            "rooms": [],
+            "employee_list": {
+                "CEG": []
+            }
+        },
+        {
+            "name": "Hello",
+            "location": {
+                "latitude": 39.7815593913723,
+                "longitude": -84.06404406473412
+            },
+            "photo_path": "",
+            "desk_number": "",
+            "hours": "",
+            "description": "",
+            "rooms": [],
+            "employee_list": {
+                "CEG": []
+            }
         }
     ]
 }
