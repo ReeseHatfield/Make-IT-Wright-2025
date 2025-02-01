@@ -75,6 +75,41 @@
             "building_description": "a",
             "rooms": [],
             "employee_list": {}
+        },
+        {
+            "name": null,
+            "photo_path": [],
+            "desk_number": null,
+            "hours": null,
+            "description": null,
+            "rooms": [],
+            "employees": {}
+        },
+        {
+            "name": "russ",
+            "photo_path": "/home/sheep/github/Make-IT-Wright-2025/generator/buildings.json",
+            "desk_number": "444-444-4444",
+            "hours": "4:30-6:30",
+            "description": "DOOM",
+            "rooms": [
+                {
+                    "name": "EGR1010",
+                    "lead": "Dr Doom",
+                    "time": "6:00-9:00",
+                    "description": "DR. D's Play house",
+                    "room_number": "Russ 444"
+                }
+            ],
+            "employees": {
+                "HR": [
+                    {
+                        "name": "DOOM",
+                        "phone_number": "999999999",
+                        "office": "DOOM LAYER",
+                        "hours": "ALWAYS-ALWAYS"
+                    }
+                ]
+            }
         }
     ]
 }
