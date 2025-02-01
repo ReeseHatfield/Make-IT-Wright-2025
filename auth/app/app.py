@@ -3,6 +3,9 @@ from flask_cors import CORS
 import json
 import random
 import hashlib
+import threading
+import time
+import uuid as ud
 
 app = Flask(__name__)
 CORS(app)
@@ -10,14 +13,25 @@ CORS(app)
 # Reads in the local data.json file
 data = open('../data.json').read()
 directory = json.loads(data)
-uuid = -1
+uuid = ud.uuid4()
+
+def update_uuid():
+    global uuid
+
+    while True:
+        time.sleep(300)
+        uuid = ud.uuid4()
+
+
+thread = threading.Thread(target=update_uuid, daemon=True)
+thread.start()
 
 @app.route('/checkUser', methods=['POST'])
 def check_user():
     global uuid
     route_uuid = request.json.get('uuid')
 
-    if int(route_uuid) == int(uuid):
+    if uuid.__eq__(route_uuid):
         return jsonify({'message': 'true'})
     else:
         return jsonify({'message': 'false'})
@@ -43,14 +57,14 @@ def auth_user():
 
     username = new_user.get('username')
     password = new_user.get('password')
-    hash_object = hashlib.sha256(password.encode('utf-8'))
+    hash_object = hashlib.sha512(password.encode('utf-8'))
     hex_digest = hash_object.hexdigest()
 
     if username in directory:
 
         password = directory[username]
         if password == hex_digest:
-            uuid = random.randint(0, 1000000)
+            uuid = ud.uuid4()
             return jsonify({'message': f'{uuid}'})
         else:
             return jsonify({'message': 'User && password not found'})
