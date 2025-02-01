@@ -1,0 +1,80 @@
+{
+    "buildings": [
+        {
+            "name": "Russ",
+            "photo_path": "./photo",
+            "desk_number": "937-818-7860",
+            "hours": "4:30-4:31",
+            "description": "Engineering go brrr",
+            "rooms": [
+                {
+                    "name": "EGR1010",
+                    "lead": "Raymer",
+                    "time": "4:30-6:30",
+                    "description": "Engineer",
+                    "room_number": "Russ 360"
+                }
+            ],
+            "employees": {
+                "HR": [
+                    {
+                        "name": "Chetcuti",
+                        "phone_number": "999-999-9999",
+                        "office": "Russ 4565",
+                        "hours": "6:00-7:00"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "a",
+            "photo_path": "a",
+            "desk_number": "a",
+            "hours": "a",
+            "building_description": "a",
+            "rooms": [
+                {
+                    "name": "a",
+                    "lead": "a",
+                    "time": "a",
+                    "room_description": "a",
+                    "room_number": "a"
+                },
+                {
+                    "name": "a",
+                    "lead": "a",
+                    "time": "a",
+                    "room_description": "a",
+                    "room_number": "a"
+                }
+            ],
+            "employee_list": {
+                "HR": [
+                    {
+                        "name": "jay",
+                        "phone_number": "ha",
+                        "office": "a",
+                        "hours": "a"
+                    }
+                ],
+                "CEG": [
+                    {
+                        "name": "a",
+                        "phone_number": "a",
+                        "office": "a",
+                        "hours": "a"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Gay",
+            "photo_path": "a",
+            "desk_number": "a",
+            "hours": "a",
+            "building_description": "a",
+            "rooms": [],
+            "employee_list": {}
+        }
+    ]
+}
