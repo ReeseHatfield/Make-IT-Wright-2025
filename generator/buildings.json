@@ -2,111 +2,26 @@
     "buildings": [
         {
             "name": "Russ",
-            "photo_path": "./photo",
-            "desk_number": "937-818-7860",
-            "hours": "4:30-4:31",
-            "description": "Engineering go brrr",
+            "photo_path": "/home/sheep/github/Make-IT-Wright-2025/generator/main.py",
+            "desk_number": "937-898-9090",
+            "hours": "430am-540pm",
+            "description": "For kmap engineers",
             "rooms": [
                 {
-                    "name": "EGR1010",
-                    "lead": "Raymer",
-                    "time": "4:30-6:30",
-                    "description": "Engineer",
-                    "room_number": "Russ 360"
-                }
-            ],
-            "employees": {
-                "HR": [
-                    {
-                        "name": "Chetcuti",
-                        "phone_number": "999-999-9999",
-                        "office": "Russ 4565",
-                        "hours": "6:00-7:00"
-                    }
-                ]
-            }
-        },
-        {
-            "name": "a",
-            "photo_path": "a",
-            "desk_number": "a",
-            "hours": "a",
-            "building_description": "a",
-            "rooms": [
-                {
-                    "name": "a",
-                    "lead": "a",
-                    "time": "a",
-                    "room_description": "a",
-                    "room_number": "a"
-                },
-                {
-                    "name": "a",
-                    "lead": "a",
-                    "time": "a",
-                    "room_description": "a",
-                    "room_number": "a"
+                    "name": "EGR4410",
+                    "lead": "Doom",
+                    "time": "4:30am-6:00pm",
+                    "description": "English",
+                    "room_number": "Russ 45"
                 }
             ],
             "employee_list": {
-                "HR": [
-                    {
-                        "name": "jay",
-                        "phone_number": "ha",
-                        "office": "a",
-                        "hours": "a"
-                    }
-                ],
                 "CEG": [
                     {
-                        "name": "a",
-                        "phone_number": "a",
-                        "office": "a",
-                        "hours": "a"
-                    }
-                ]
-            }
-        },
-        {
-            "name": "Gay",
-            "photo_path": "a",
-            "desk_number": "a",
-            "hours": "a",
-            "building_description": "a",
-            "rooms": [],
-            "employee_list": {}
-        },
-        {
-            "name": null,
-            "photo_path": [],
-            "desk_number": null,
-            "hours": null,
-            "description": null,
-            "rooms": [],
-            "employees": {}
-        },
-        {
-            "name": "russ",
-            "photo_path": "/home/sheep/github/Make-IT-Wright-2025/generator/buildings.json",
-            "desk_number": "444-444-4444",
-            "hours": "4:30-6:30",
-            "description": "DOOM",
-            "rooms": [
-                {
-                    "name": "EGR1010",
-                    "lead": "Dr Doom",
-                    "time": "6:00-9:00",
-                    "description": "DR. D's Play house",
-                    "room_number": "Russ 444"
-                }
-            ],
-            "employees": {
-                "HR": [
-                    {
-                        "name": "DOOM",
-                        "phone_number": "999999999",
-                        "office": "DOOM LAYER",
-                        "hours": "ALWAYS-ALWAYS"
+                        "name": "Doom",
+                        "phone_number": "999-999-9999",
+                        "office": "Russ654",
+                        "hours": "9:00am-6:pm"
                     }
                 ]
             }
