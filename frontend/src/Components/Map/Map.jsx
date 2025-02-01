@@ -46,20 +46,40 @@ const Map = ({ apiKey, coords = [] }) => {
   const [expandedRooms, setExpandedRooms] = useState({});
   const [expandedEmployees, setExpandedEmployees] = useState({});
 
-  const initialCenter = [-84.063429, 39.782072];
+  // Remove the hardcoded center:
+  // const initialCenter = [-84.063429, 39.782072];
 
+  // Use state to store the fetched center coordinates.
+  const [center, setCenter] = useState(null);
+
+  // Fetch the average center from the API.
   useEffect(() => {
-    if (map.current) return;
+    const fetchCenter = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/average');
+        const data = await res.json();
+        // Ensure the order is [longitude, latitude]
+        setCenter([data.longitude, data.latitude]);
+      } catch (error) {
+        console.error('Error fetching center:', error);
+      }
+    };
+    fetchCenter();
+  }, []);
+
+  // Initialize the map once the center has been fetched.
+  useEffect(() => {
+    if (map.current || !center) return;
 
     map.current = new maplibregl.Map({
       container: mapContainer.current,
       style: `https://api.maptiler.com/maps/${style}/style.json?key=${apiKey}`,
-      center: initialCenter,
+      center: center,
       zoom: 17,
     });
 
     map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
-  }, [apiKey, style]);
+  }, [apiKey, style, center]);
 
   useEffect(() => {
     if (map.current && coords.length > 0) {
