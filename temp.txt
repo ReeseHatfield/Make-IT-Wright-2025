@@ -1,0 +1,45 @@
+.
+├── auth
+│   ├── Dockerfile
+│   ├── app
+│   │   ├── __pycache__
+│   │   │   └── app.cpython-39.pyc
+│   │   └── app.py
+│   ├── data.json
+│   └── requirements.txt
+├── backend
+│   ├── Dockerfile
+│   ├── app
+│   │   ├── __pycache__
+│   │   │   └── app.cpython-39.pyc
+│   │   ├── app.py
+│   │   └── data.json
+│   ├── key.txt
+│   └── requirements.txt
+├── docker-compose.yml
+├── frontend
+│   ├── Dockerfile
+│   ├── README.md
+│   ├── app
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   │   └── vite.svg
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── Components
+│   │   │   ├── Form
+│   │   │   └── Map
+│   │   ├── assets
+│   │   │   └── react.svg
+│   │   ├── index.css
+│   │   └── main.jsx
+│   └── vite.config.js
+├── init.sh
+├── run-docker.sh
+└── temp.txt
+
+15 directories, 28 files
