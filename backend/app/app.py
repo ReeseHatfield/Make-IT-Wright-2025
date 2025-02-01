@@ -17,6 +17,18 @@ def getkey():
         'key': open('../key.txt').read()
     }
 
+@app.route('/getCoords', methods=['GET'])
+def get_locations():
+    # Extract location data from each building
+    locations = []
+    for building in directory["buildings"]:
+        location = building.get("location")
+        if location:
+            locations.append(location)
+    
+    # Return the list of locations as a JSON response
+    return jsonify(locations)
+
 @app.route('/search', methods=['GET'])
 def search():
     search_string = request.args.get('query', '').lower()  # Get the search query from the request
