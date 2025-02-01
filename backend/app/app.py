@@ -10,6 +10,13 @@ CORS(app)
 data = open('data.json').read()
 directory = json.loads(data)
 
+@app.route('/getkey')
+def getkey():
+    return {
+        # get the contents of key.txt and return it
+        'key': open('../key.txt').read()
+    }
+
 # Helper function to save the directory to the JSON file
 def save_directory():
     try:
