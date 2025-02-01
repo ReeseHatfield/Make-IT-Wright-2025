@@ -19,6 +19,7 @@ const Map = ({ apiKey, coords = [] }) => {
     const sectionRefs = useRef([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [buildingData, setBuildingData] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const initialCenter = [-84.063429, 39.782072];
 
@@ -90,6 +91,12 @@ const Map = ({ apiKey, coords = [] }) => {
         setIsModalOpen(false);
     };
 
+    // Filter the buildingData by checking all attributes.
+    // Converting the building object to a string ensures that nested data is searched as well.
+    const filteredBuildings = buildingData.filter(building => 
+        building && JSON.stringify(building).toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <>
             <div style={{ display: 'flex', width: '100%', height: '100%', position: 'absolute' }}>
@@ -105,7 +112,14 @@ const Map = ({ apiKey, coords = [] }) => {
                 </div>
 
                 <div style={{ width: '30%', padding: '10px', overflowY: 'auto', height: '100%' }}>
-                    {buildingData.map((building, index) => (
+                    <input 
+                        type="text" 
+                        placeholder="Search buildings..." 
+                        value={searchQuery} 
+                        onChange={(e) => setSearchQuery(e.target.value)} 
+                        style={{ width: '100%', padding: '10px', marginBottom: '10px', border: '1px solid #ddd', borderRadius: '4px' }}
+                    />
+                    {filteredBuildings.map((building, index) => (
                         <div
                             key={index}
                             ref={(el) => (sectionRefs.current[index] = el)}
