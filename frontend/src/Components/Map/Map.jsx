@@ -23,7 +23,7 @@ const highlightText = (text, query) => {
   const parts = text.split(regex);
   return parts.map((part, i) =>
     regex.test(part) ? (
-      <span key={i} style={{ backgroundColor: 'yellow' }}>
+      <span key={i} style={{ backgroundColor: 'blue' }}>
         {part}
       </span>
     ) : (
