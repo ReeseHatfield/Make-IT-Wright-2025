@@ -17,6 +17,34 @@ def getkey():
         'key': open('../key.txt').read()
     }
 
+@app.route('/search', methods=['GET'])
+def search():
+    search_string = request.args.get('query', '').lower()  # Get the search query from the request
+
+    # Initialize an empty list to hold the search results
+    results = []
+
+    # Function to search through dictionaries
+    def search_dict(d):
+        for key, value in d.items():
+            if isinstance(value, str) and search_string in value.lower():
+                results.append(d)  # If string matches, append the whole dictionary
+
+            # If value is a dictionary or list, recursively search inside
+            elif isinstance(value, dict):
+                search_dict(value)
+            elif isinstance(value, list) and search_string.lower() != "ceg":
+                for item in value:
+                    search_dict(item)
+
+    # Start the search at the root of the directory
+    search_dict(directory)
+
+    if results:
+        return jsonify(results), 200
+    else:
+        return jsonify({"message": "No results found"}), 404
+
 # Helper function to save the directory to the JSON file
 def save_directory():
     try:
