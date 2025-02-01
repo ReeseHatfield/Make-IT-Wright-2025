@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/ReeseHatfield/Make-IT-Wright-2025/">
-    <img src="./logo.png" alt="PineMap Logo" width="400" height="370">
+    <img src="./logo.svg" alt="PineMap Logo" width="400" height="370">
   </a>
 </p>
 
