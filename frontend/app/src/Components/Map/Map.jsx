@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import maplibregl from 'maplibre-gl';
-// import 'maplibre-gl/dist/maplibre-gl.css'; 
+// import 'maplibre-gl/dist/maplibre-gl.css';
+import "./Map.css"
 
 const STYLE = {
     OUTDOOR: "outdoor",
@@ -10,20 +11,17 @@ const STYLE = {
     SATELLITE: "satellite"
 };
 
-const Map = ({ apiKey }) => {
+const Map = ({ apiKey, coords = [] }) => {
     const mapContainer = useRef(null);
     const map = useRef(null);
-    const markerRef = useRef(null);
     const [style, setStyle] = useState(STYLE.OUTDOOR);
+    const [selectedPin, setSelectedPin] = useState(null);
+    const sectionRefs = useRef([]);
 
     const initialCenter = [-84.063429, 39.782072];
 
-    console.log("APIKEY:" + apiKey)
-
     useEffect(() => {
-        if (map.current) return;
-
-        console.log("Initializing map");
+        if (map.current) return; // Only initialize once
 
         map.current = new maplibregl.Map({
             container: mapContainer.current,
@@ -33,21 +31,23 @@ const Map = ({ apiKey }) => {
         });
 
         map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
+    }, [apiKey, style]);
 
-        map.current.on('click', (e) => {
-            const { lng, lat } = e.lngLat;
-
-            if (markerRef.current) {
-                markerRef.current.setLngLat([lng, lat]);
-            } else {
-                markerRef.current = new maplibregl.Marker()
-                    .setLngLat([lng, lat])
+    useEffect(() => {
+        // Only add markers after the map is initialized
+        if (map.current && coords.length > 0) {
+            coords.forEach((coord, index) => {
+                const marker = new maplibregl.Marker()
+                    .setLngLat(coord)
                     .addTo(map.current);
-            }
 
-            // setPos({ x: lat, y: lng, z: 0 });
-        });
-    }, [apiKey]);
+                marker.getElement().addEventListener('click', () => {
+                    setSelectedPin(index);
+                    sectionRefs.current[index].scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        }
+    }, [coords]);
 
     useEffect(() => {
         if (map.current) {
@@ -60,15 +60,37 @@ const Map = ({ apiKey }) => {
     };
 
     return (
-        <div style={{ width: '100%', height: '400px', position: 'relative' }}>
-            <select value={style} onChange={handleStyleChange}>
-                {Object.values(STYLE).map(style => (
-                    <option key={style} value={style}>
-                        {style}
-                    </option>
+        <div style={{ display: 'flex', width: '100%', height: '400px', position: 'relative' }}>
+            <div style={{ width: '70%', height: '100%' }}>
+                <select value={style} onChange={handleStyleChange} style={{ position: 'absolute', zIndex: 10, top: '10px', left: '10px' }}>
+                    {Object.values(STYLE).map((style) => (
+                        <option key={style} value={style}>
+                            {style}
+                        </option>
+                    ))}
+                </select>
+                <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
+            </div>
+
+            <div style={{ width: '30%', padding: '10px', overflowY: 'auto', height: '100%' }}>
+                {coords.map((coord, index) => (
+                    <div
+                        key={index}
+                        ref={(el) => (sectionRefs.current[index] = el)} // Store reference to each section
+                        style={{
+                            marginBottom: '20px',
+                            padding: '10px',
+                            border: '1px solid #ddd',
+                            backgroundColor: selectedPin === index ? '#f0f0f0' : 'white',
+                            transition: 'background-color 0.3s',
+                        }}
+                    >
+                        <h3>Pin {index + 1}</h3>
+                        <p>Coordinates: {coord[0]}, {coord[1]}</p>
+                        <p>Unique info for Pin {index + 1} here</p>
+                    </div>
                 ))}
-            </select>
-            <div ref={mapContainer} style={{ width: '100%', height: '100%', position: 'absolute' }} />
+            </div>
         </div>
     );
 };
