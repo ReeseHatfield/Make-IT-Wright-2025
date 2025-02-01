@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import maplibregl from 'maplibre-gl';
 import './Map.css';
 import FormWrapper from '../Form/Form';
+import { useNavigate } from 'react-router-dom';
 
 const STYLE = {
   OUTDOOR: 'outdoor',
@@ -46,10 +47,61 @@ const Map = ({ apiKey, coords = [] }) => {
   const [expandedRooms, setExpandedRooms] = useState({});
   const [expandedEmployees, setExpandedEmployees] = useState({});
 
-  const initialCenter = [-84.063429, 39.782072];
+
+  const navigate = useNavigate();
+  // Remove the hardcoded center:
+  // const initialCenter = [-84.063429, 39.782072];
 
   useEffect(() => {
-    if (map.current) return;
+    const fetchCenter = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/average');
+        const data = await res.json();
+        // Ensure the order is [longitude, latitude]
+        setCenter([data.longitude, data.latitude]);
+      } catch (error) {
+        console.error('Error fetching center:', error);
+      }
+    };
+    fetchCenter();
+
+
+    fetch("http://localhost:6969/checkUser", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            "uuid": localStorage.getItem("userUUID")
+        }),
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log("Checking for user auth");
+            console.log(JSON.stringify(data));
+
+
+        const isAuthed = data.message;
+
+
+        console.log("IsUathed: " + isAuthed)
+
+        if (isAuthed === "false") {
+            console.log("TRYING TO CALL NAV");
+            navigate("/login");
+        }
+
+        })
+        .catch((err) => {
+        console.log("Ooopsies I got " + err)
+        })
+
+
+  }, []);
+
+  // Initialize the map once the center has been fetched.
+  useEffect(() => {
+    if (map.current || !center) return;
 
     map.current = new maplibregl.Map({
       container: mapContainer.current,
@@ -57,6 +109,8 @@ const Map = ({ apiKey, coords = [] }) => {
       center: initialCenter,
       zoom: 17,
     });
+
+
 
     map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
   }, [apiKey, style]);

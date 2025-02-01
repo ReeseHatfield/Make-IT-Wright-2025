@@ -1,36 +1,42 @@
 import { useState, useEffect } from "react";
 import Map from "./Components/Map/Map";
 import Login from "./Components/Login/Login";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
 function App() {
   const [key, setKey] = useState(null);
   const [coords, setCoords] = useState([]);
 
+  // Use navigate within the component
   useEffect(() => {
-    fetch("http://localhost:3000/getCoords")
-      .then((res) => res.json())
-      .then((data) => {
+    const fetchCoords = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/getCoords");
+        const data = await res.json();
         if (Array.isArray(data)) {
-          // Convert { latitude, longitude } to [longitude, latitude]
-          const formattedCoords = data.map(({ latitude, longitude }) => [
-            longitude,
-            latitude,
-          ]);
-          setCoords(formattedCoords);
+          setCoords(data.map(({ latitude, longitude }) => [longitude, latitude]));
         } else {
           console.error("Unexpected data format:", data);
         }
-      })
-      .catch((error) => console.error("Error fetching coordinates:", error));
-
-    fetch("http://localhost:3000/getkey")
-      .then((response) => response.json())
-      .then((message) => setKey(message.key))
-      .catch((error) => console.error("Error fetching API key:", error));
+      } catch (error) {
+        console.error("Error fetching coordinates:", error);
+      }
+    };
+  
+    const fetchKey = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/getkey");
+        const message = await res.json();
+        setKey(message.key);
+      } catch (error) {
+        console.error("Error fetching API key:", error);
+      }
+    };
+  
+    fetchCoords();
+    fetchKey();
   }, []);
-
+  
   return (
     <BrowserRouter>
       <Routes>
@@ -43,7 +49,6 @@ function App() {
             </div>
           }
         />
-
         <Route
           path="/login"
           element={

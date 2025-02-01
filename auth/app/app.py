@@ -32,10 +32,18 @@ def check_user():
     global uuid
     route_uuid = request.json.get("uuid")
 
-    if uuid.__eq__(route_uuid):
-        return jsonify({"message": "true"})
+    if f'{uuid}' == f'{route_uuid}':
+        return jsonify({
+                "message": "true"
+                # "expecting": uuid,
+                # "recevied": route_uuid
+            })
     else:
-        return jsonify({"message": "false"})
+        return jsonify({
+                "message": "false"
+                # "expecting": uuid,
+                # "recevied": route_uuid
+            })
 
 
 # Endpoint to add a new building
