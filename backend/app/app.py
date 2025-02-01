@@ -159,12 +159,13 @@ def get_closest_building(lat, lon):
     min_distance = float('inf')  # Initialize with a very large number
 
     for building in directory['buildings']:
-        building_coords = (building['location']['latitude'], building['location']['longitude'])
-        distance = geodesic((lat, lon), building_coords).miles
+        if isinstance(building['location']["latitude"], float) and isinstance(building['location']["longitude"], float):
+            building_coords = (building['location']['latitude'], building['location']['longitude'])
+            distance = geodesic((lat, lon), building_coords).miles
         
-        if distance < min_distance:
-            min_distance = distance
-            closest_building = building
+            if distance < min_distance:
+                min_distance = distance
+                closest_building = building
 
     return closest_building
 
