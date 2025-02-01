@@ -253,7 +253,7 @@ export default function Form({ apiKey }) {
 
         <button onClick={handleSubmit}>Submit</button>
 
-        <pre className="json-output">{JSON.stringify(data, null, 2)}</pre>
+        {/* <pre className="json-output">{JSON.stringify(data, null, 2)}</pre> */}
       </div>
 
       <div className="map-container">
