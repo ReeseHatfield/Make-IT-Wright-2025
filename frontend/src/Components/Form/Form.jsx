@@ -18,7 +18,7 @@ export default function Form({ apiKey }) {
 
   const [style, setStyle] = useState(STYLE.OUTDOOR);
 
-  const initialCenter = [-84.063429, 39.782072];
+  const initialCenter = [-84.207281, 39.699794];
 
   const [pos, setPos] = useState([0, 0]);
   useEffect(() => {

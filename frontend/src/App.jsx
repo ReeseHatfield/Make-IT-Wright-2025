@@ -44,7 +44,7 @@ function App() {
           path="/home"
           element={
             <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-              <h1>Data from Server</h1>
+              <h1>Darkleaf Labs</h1>
               {key ? <Map apiKey={key} coords={coords} /> : <p>Loading...</p>}
             </div>
           }

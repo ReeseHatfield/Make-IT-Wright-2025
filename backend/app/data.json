@@ -1,335 +1,226 @@
 {
     "buildings": [
         {
-            "name": "West Tower",
-            "photo_path": "/images/west_tower.jpg",
-            "desk_number": "101",
-            "hours": "9:00 AM - 5:00 PM",
-            "description": "The West Tower houses the main offices for the tech department.",
+            "name": "Darkleaf Labs",
+            "photo_path": "/images/darkleaf_labs.jpg",
+            "desk_number": "A12",
+            "hours": "Mon-Fri, 9:00 AM - 6:00 PM",
+            "description": "A cutting-edge research facility specializing in AI-driven geographic data analysis and visualization.",
             "location": {
-                "latitude": 40.7128,
-                "longitude": -74.006
+                "latitude": 39.700711,
+                "longitude": -84.207458
             },
             "rooms": [
                 {
-                    "name": "Conference Room A",
-                    "lead": "John Doe",
-                    "time": "9:30 AM - 10:30 AM",
-                    "description": "A small conference room for meetings and presentations.",
-                    "room_number": "101A"
+                    "name": "Data Processing Lab",
+                    "lead": "Dr. Evelyn Carter",
+                    "time": "9:00 AM - 5:00 PM",
+                    "description": "Handles real-time data processing for mapping and analytics.",
+                    "room_number": "B201"
                 },
                 {
-                    "name": "Server Room",
-                    "lead": "Jane Smith",
-                    "time": "24/7",
-                    "description": "A secure room for the building\u2019s server infrastructure.",
-                    "room_number": "101B"
+                    "name": "Visualization Suite",
+                    "lead": "Alex Nguyen",
+                    "time": "10:00 AM - 4:00 PM",
+                    "description": "Equipped with high-resolution displays for 3D geographic modeling.",
+                    "room_number": "C310"
                 }
             ],
             "employee_list": {
                 "employee": [
                     {
-                        "name": "Tech Support",
-                        "phone_number": "+1-800-555-0199",
-                        "office": "102",
-                        "hours": "9:00 AM - 6:00 PM"
+                        "name": "Dr. Evelyn Carter",
+                        "phone_number": "+1-937-555-0198",
+                        "office": "B201",
+                        "hours": "9:00 AM - 5:00 PM"
                     },
                     {
-                        "name": "Engineering",
-                        "phone_number": "+1-800-555-0130",
-                        "office": "103",
+                        "name": "Alex Nguyen",
+                        "phone_number": "+1-937-555-0243",
+                        "office": "C310",
+                        "hours": "10:00 AM - 4:00 PM"
+                    },
+                    {
+                        "name": "Jordan Reyes",
+                        "phone_number": "+1-937-555-0312",
+                        "office": "A12",
+                        "hours": "9:00 AM - 6:00 PM"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Westfield Research Center",
+            "photo_path": "/images/westfield_research.jpg",
+            "desk_number": "B10",
+            "hours": "Mon-Fri, 8:00 AM - 5:00 PM",
+            "description": "A facility dedicated to applied physics and experimental engineering.",
+            "location": {
+                "latitude": 39.700843,
+                "longitude": -84.209391
+            },
+            "rooms": [
+                {
+                    "name": "Quantum Computing Lab",
+                    "lead": "Dr. Samuel Holt",
+                    "time": "8:30 AM - 4:30 PM",
+                    "description": "Focuses on quantum simulations and high-speed computation.",
+                    "room_number": "Q101"
+                },
+                {
+                    "name": "Materials Testing Chamber",
+                    "lead": "Nina Patel",
+                    "time": "9:00 AM - 5:00 PM",
+                    "description": "Conducts stress tests on advanced composite materials.",
+                    "room_number": "M205"
+                }
+            ],
+            "employee_list": {
+                "employee": [
+                    {
+                        "name": "Dr. Samuel Holt",
+                        "phone_number": "+1-937-555-0456",
+                        "office": "Q101",
+                        "hours": "8:30 AM - 4:30 PM"
+                    },
+                    {
+                        "name": "Nina Patel",
+                        "phone_number": "+1-937-555-0492",
+                        "office": "M205",
                         "hours": "9:00 AM - 5:00 PM"
                     }
                 ]
             }
         },
         {
-            "name": "East Wing",
-            "photo_path": "/images/east_wing.jpg",
-            "desk_number": "202",
-            "hours": "10:00 AM - 4:00 PM",
-            "description": "The East Wing is dedicated to the human resources and marketing employee.",
+            "name": "Eastwood AI Hub",
+            "photo_path": "/images/eastwood_ai_hub.jpg",
+            "desk_number": "C22",
+            "hours": "Mon-Sat, 10:00 AM - 7:00 PM",
+            "description": "A technology hub focused on machine learning and artificial intelligence applications.",
             "location": {
-                "latitude": 40.7306,
-                "longitude": -73.9352
+                "latitude": 39.699394,
+                "longitude": -84.207249
             },
             "rooms": [
                 {
-                    "name": "HR Meeting Room",
-                    "lead": "Rachel Green",
-                    "time": "11:00 AM - 12:00 PM",
-                    "description": "A room for HR-related meetings and training.",
-                    "room_number": "202A"
+                    "name": "Neural Network Lab",
+                    "lead": "Dr. Amelia Lopez",
+                    "time": "10:00 AM - 6:00 PM",
+                    "description": "Develops and trains deep learning models for various applications.",
+                    "room_number": "N301"
                 },
                 {
-                    "name": "Marketing Lab",
-                    "lead": "Monica Geller",
-                    "time": "9:00 AM - 6:00 PM",
-                    "description": "A creative space for brainstorming and marketing activities.",
-                    "room_number": "202B"
+                    "name": "Robotics Lab",
+                    "lead": "Bryan Chen",
+                    "time": "11:00 AM - 5:00 PM",
+                    "description": "Prototyping and testing AI-driven robotics solutions.",
+                    "room_number": "R402"
                 }
             ],
             "employee_list": {
                 "employee": [
                     {
-                        "name": "Human Resources",
-                        "phone_number": "+1-800-555-0150",
-                        "office": "204",
-                        "hours": "10:00 AM - 5:00 PM"
+                        "name": "Dr. Amelia Lopez",
+                        "phone_number": "+1-937-555-0621",
+                        "office": "N301",
+                        "hours": "10:00 AM - 6:00 PM"
                     },
                     {
-                        "name": "Marketing",
-                        "phone_number": "+1-800-555-0160",
-                        "office": "205",
+                        "name": "Bryan Chen",
+                        "phone_number": "+1-937-555-0743",
+                        "office": "R402",
+                        "hours": "11:00 AM - 5:00 PM"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Northwood Cybersecurity Center",
+            "photo_path": "/images/northwood_cyber.jpg",
+            "desk_number": "D15",
+            "hours": "Mon-Fri, 9:00 AM - 6:00 PM",
+            "description": "A specialized center focusing on cybersecurity research and penetration testing.",
+            "location": {
+                "latitude": 39.700066,
+                "longitude": -84.208075
+            },
+            "rooms": [
+                {
+                    "name": "Red Team Ops",
+                    "lead": "Dr. Marcus Grant",
+                    "time": "9:00 AM - 5:00 PM",
+                    "description": "Simulates cyber-attacks to test system security.",
+                    "room_number": "S501"
+                },
+                {
+                    "name": "Forensics Lab",
+                    "lead": "Tasha Simmons",
+                    "time": "24/7",
+                    "description": "Analyzes digital evidence for security incidents.",
+                    "room_number": "F610"
+                }
+            ],
+            "employee_list": {
+                "employee": [
+                    {
+                        "name": "Dr. Marcus Grant",
+                        "phone_number": "+1-937-555-0814",
+                        "office": "S501",
+                        "hours": "9:00 AM - 5:00 PM"
+                    },
+                    {
+                        "name": "Tasha Simmons",
+                        "phone_number": "+1-937-555-0935",
+                        "office": "F610",
+                        "hours": "24/7"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Riverside Innovation Hub",
+            "photo_path": "/images/riverside_hub.jpg",
+            "desk_number": "E20",
+            "hours": "Mon-Sat, 8:00 AM - 6:00 PM",
+            "description": "A collaborative workspace for startups and research teams focused on emerging technologies.",
+            "location": {
+                "latitude": 39.699786,
+                "longitude": -84.208918
+            },
+            "rooms": [
+                {
+                    "name": "Startup Incubator",
+                    "lead": "Dr. Olivia Bennett",
+                    "time": "9:00 AM - 5:00 PM",
+                    "description": "Provides resources and mentorship for new tech startups.",
+                    "room_number": "I102"
+                },
+                {
+                    "name": "Tech Prototyping Lab",
+                    "lead": "Jared Wong",
+                    "time": "10:00 AM - 6:00 PM",
+                    "description": "A space for rapid prototyping and testing of new technology solutions.",
+                    "room_number": "T204"
+                }
+            ],
+            "employee_list": {
+                "employee": [
+                    {
+                        "name": "Dr. Olivia Bennett",
+                        "phone_number": "+1-937-555-1056",
+                        "office": "I102",
+                        "hours": "9:00 AM - 5:00 PM"
+                    },
+                    {
+                        "name": "Jared Wong",
+                        "phone_number": "+1-937-555-1123",
+                        "office": "T204",
                         "hours": "10:00 AM - 6:00 PM"
                     }
                 ]
             }
-        },
-        {
-            "name": "asdfasdfasdf",
-            "location": {
-                "latitude": 39.73456705888413,
-                "longitude": -84.1234672750765
-            },
-            "photo_path": "asdfkjaskdf",
-            "desk_number": "ajsdflkjasdfklj",
-            "hours": "asdjfkasdnfnk",
-            "description": "Descritpjspritji",
-            "rooms": [
-                {
-                    "name": "asdfasdf",
-                    "lead": "Room lead",
-                    "time": "this is a time",
-                    "description": "alsdjflkajsdfkj",
-                    "room_number": "56"
-                },
-                {
-                    "name": "jaksdjfkajsdf",
-                    "lead": "MYELAJFSDKJ",
-                    "time": "k=asdifjaijefi",
-                    "description": "qiasjdfijsdflij",
-                    "room_number": "asdfa sdfasdf"
-                },
-                {
-                    "name": "fasdkfnk",
-                    "lead": "jk",
-                    "time": "jkj",
-                    "description": "kj",
-                    "room_number": "kjk"
-                }
-            ],
-            "employee_list": {
-                "employee": [
-                    {
-                        "name": "namae",
-                        "phone_number": "asdfasdfasdf",
-                        "office": "askdjfkjasdfk",
-                        "hours": "asdfasdf"
-                    },
-                    {
-                        "name": "kdjfkwejfk",
-                        "phone_number": "kjsadkasjf",
-                        "office": "wjkqjfkjqkj",
-                        "hours": "w"
-                    }
-                ]
-            }
-        },
-        {
-            "name": "Testname",
-            "location": {
-                "latitude": 39.788884134,
-                "longitude": -84.038750765
-            },
-            "photo_path": "PRETEND THIS IS A PATH",
-            "desk_number": "NUMBER",
-            "hours": "HSOUE",
-            "description": "SKAJDFLAKJSDFKLJ",
-            "rooms": [
-                {
-                    "name": "namemmymy",
-                    "lead": "lead",
-                    "time": "ETJWKFJ",
-                    "description": "KASDJFKJ",
-                    "room_number": "KSFJA9SDFJ"
-                }
-            ],
-            "employee_list": {
-                "employee": [
-                    {
-                        "name": "JSKDFJAKSDFJ",
-                        "phone_number": "ASDF",
-                        "office": "QJAKSDJFLAKJ",
-                        "hours": "KJLFKSDJF"
-                    }
-                ]
-            }
-        },
-        {
-            "name": "ASDFSADFJ",
-            "location": {
-                "latitude": 39.78250554134,
-                "longitude": -84.06267672750765
-            },
-            "photo_path": "JIWFJIQEJF",
-            "desk_number": "JI",
-            "hours": "IWFJI",
-            "description": "WFJ",
-            "rooms": [],
-            "employee_list": {
-                "employee": []
-            }
-        },
-        {
-            "name": "asdfjaksdjfk",
-            "location": {
-                "latitude": 39.782507655134,
-                "longitude": -84.06765275
-            },
-            "photo_path": "jsdkfj",
-            "desk_number": "k",
-            "hours": "wjk",
-            "description": "jfkfj",
-            "rooms": [],
-            "employee_list": {
-                "employee": []
-            }
-        },
-        {
-            "name": "asdfjaksdjfk",
-            "location": {
-                "latitude": 39.7828884134,
-                "longitude": -84.02750765
-            },
-            "photo_path": "jsdkfjfasdfasdfasdf",
-            "desk_number": "k",
-            "hours": "QWERTY",
-            "description": "asdfjlaskdjflaksdjflkjasdf",
-            "rooms": [],
-            "employee_list": {
-                "employee": []
-            }
-        },
-        {
-            "name": "",
-            "location": {
-                "latitude": 39.7825884134,
-                "longitude": -84.07828067275076
-            },
-            "photo_path": "efwewf",
-            "desk_number": "wef",
-            "hours": "wfwef",
-            "description": "",
-            "rooms": [],
-            "employee_list": {
-                "employee": []
-            }
-        },
-        {
-            "name": "sdfjsdkfj",
-            "location": {
-                "latitude": 39.782656545888415,
-                "longitude": -84.062672750765
-            },
-            "photo_path": "wlfj",
-            "desk_number": "",
-            "hours": "",
-            "description": "",
-            "rooms": [
-                {
-                    "name": "",
-                    "lead": "",
-                    "time": "",
-                    "description": "",
-                    "room_number": ""
-                }
-            ],
-            "employee_list": {
-                "employee": [
-                    {
-                        "name": "",
-                        "phone_number": "",
-                        "office": "",
-                        "hours": ""
-                    }
-                ]
-            }
-        },
-        {
-            "name": "asdfasdf",
-            "location": {
-                "latitude": 39.7825058884134,
-                "longitude": -84.06280672750765
-            },
-            "photo_path": "sdfsadf",
-            "desk_number": "",
-            "hours": "",
-            "description": "",
-            "rooms": [],
-            "employee_list": {
-                "employee": []
-            }
-        },
-        {
-            "name": "Hello",
-            "location": {
-                "latitude": "",
-                "longitude": ""
-            },
-            "photo_path": "",
-            "desk_number": "",
-            "hours": "",
-            "description": "",
-            "rooms": [],
-            "employee_list": {
-                "employee": []
-            }
-        },
-        {
-            "name": "Hello",
-            "location": {
-                "latitude": 39.7815593913723,
-                "longitude": -84.06404406473412
-            },
-            "photo_path": "",
-            "desk_number": "",
-            "hours": "",
-            "description": "",
-            "rooms": [],
-            "employee_list": {
-                "employee": []
-            }
-        },
-        {
-            "name": "NEW BUILDING",
-            "location": {
-                "latitude": 39.783467364157076,
-                "longitude": -84.05861527959786
-            },
-            "photo_path": "",
-            "desk_number": "",
-            "hours": "",
-            "description": "",
-            "rooms": [],
-            "employee_list": {
-                "employee": []
-            }
-        },
-        {
-            "name": "",
-            "location": {
-                "latitude": "",
-                "longitude": ""
-            },
-            "photo_path": "",
-            "desk_number": "",
-            "hours": "",
-            "description": "",
-            "rooms": [],
-            "employee_list": {
-                "employee": []
-            }
         }
+        
     ]
 }

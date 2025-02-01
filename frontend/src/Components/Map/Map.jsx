@@ -50,7 +50,7 @@ const Map = ({ apiKey, coords = [] }) => {
     // const [center, setCenter] = useState([0, 0])
   const navigate = useNavigate();
   // Remove the hardcoded center:
-  const initialCenter = [-84.063429, 39.782072];
+  const initialCenter = [-84.207281, 39.699794];
 
     // const [center, setCenter] = useState(null);
     // // Fetch the average center from the API.
