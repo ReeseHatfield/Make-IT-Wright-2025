@@ -89,8 +89,8 @@
         {
             "name": "asdfasdfasdf",
             "location": {
-                "latitude": "asdfasdf",
-                "longitude": "asdf"
+                "latitude": 39.73456705888413,
+                "longitude": -84.1234672750765
             },
             "photo_path": "asdfkjaskdf",
             "desk_number": "ajsdflkjasdfklj",
@@ -139,8 +139,8 @@
         {
             "name": "Testname",
             "location": {
-                "latitude": "ltatifi",
-                "longitude": "longjgfeij"
+                "latitude": 39.788884134,
+                "longitude": -84.038750765
             },
             "photo_path": "PRETEND THIS IS A PATH",
             "desk_number": "NUMBER",
@@ -169,8 +169,8 @@
         {
             "name": "ASDFSADFJ",
             "location": {
-                "latitude": "JIDJFIJFQI",
-                "longitude": "JISDJFIEJ"
+                "latitude": 39.78250554134,
+                "longitude": -84.06267672750765
             },
             "photo_path": "JIWFJIQEJF",
             "desk_number": "JI",
@@ -184,8 +184,8 @@
         {
             "name": "asdfjaksdjfk",
             "location": {
-                "latitude": "jksdjfksdjf",
-                "longitude": "LOOKING"
+                "latitude": 39.782507655134,
+                "longitude": -84.06765275
             },
             "photo_path": "jsdkfj",
             "desk_number": "k",
@@ -199,8 +199,8 @@
         {
             "name": "asdfjaksdjfk",
             "location": {
-                "latitude": "jksdjfksdjf",
-                "longitude": "LOOKING"
+                "latitude": 39.7828884134,
+                "longitude": -84.02750765
             },
             "photo_path": "jsdkfjfasdfasdfasdf",
             "desk_number": "k",
@@ -214,8 +214,8 @@
         {
             "name": "",
             "location": {
-                "latitude": "",
-                "longitude": "fwfqewfewf"
+                "latitude": 39.7825884134,
+                "longitude": -84.07828067275076
             },
             "photo_path": "efwewf",
             "desk_number": "wef",
@@ -229,8 +229,8 @@
         {
             "name": "sdfjsdkfj",
             "location": {
-                "latitude": "kjlkwjwl kfjwlk",
-                "longitude": "jf"
+                "latitude": 39.782656545888415,
+                "longitude": -84.062672750765
             },
             "photo_path": "wlfj",
             "desk_number": "",
@@ -263,6 +263,21 @@
                 "longitude": -84.06280672750765
             },
             "photo_path": "sdfsadf",
+            "desk_number": "",
+            "hours": "",
+            "description": "",
+            "rooms": [],
+            "employee_list": {
+                "CEG": []
+            }
+        },
+        {
+            "name": "",
+            "location": {
+                "latitude": 39.781670448556014,
+                "longitude": -84.06409147969268
+            },
+            "photo_path": "",
             "desk_number": "",
             "hours": "",
             "description": "",
