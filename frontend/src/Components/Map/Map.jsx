@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import maplibregl from 'maplibre-gl';
-// import 'maplibre-gl/dist/maplibre-gl.css';
 import './Map.css';
 import FormWrapper from '../Form/Form';
 
@@ -18,7 +17,8 @@ const Map = ({ apiKey, coords = [] }) => {
     const [style, setStyle] = useState(STYLE.OUTDOOR);
     const [selectedPin, setSelectedPin] = useState(null);
     const sectionRefs = useRef([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);  
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [buildingData, setBuildingData] = useState({});  
 
     const initialCenter = [-84.063429, 39.782072];
 
@@ -44,8 +44,10 @@ const Map = ({ apiKey, coords = [] }) => {
 
                 marker.getElement().addEventListener('click', () => {
                     setSelectedPin(index);
-                    sectionRefs.current[index].scrollIntoView({ behavior: 'smooth' });
+                    sectionRefs.current[index]?.scrollIntoView({ behavior: 'smooth' });
                 });
+
+                getBuildingFromCoord(coord[1], coord[0], index);
             });
         }
     }, [coords]);
@@ -56,23 +58,20 @@ const Map = ({ apiKey, coords = [] }) => {
         }
     }, [style]);
 
-    const handleStyleChange = (e) => {
-        setStyle(e.target.value);
-    };
-
-    const handleModalToggle = () => {
-        setIsModalOpen((prev) => !prev);
-    };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false); 
+    const getBuildingFromCoord = (lat, lon, index) => {
+        fetch(`http://localhost:3000/building/closest?lat=${lat}&lon=${lon}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setBuildingData((prev) => ({ ...prev, [index]: data }));
+            })
+            .catch((err) => console.error('Error fetching building data:', err));
     };
 
     return (
         <>
             <div style={{ display: 'flex', width: '100%', height: '400px', position: 'relative' }}>
                 <div style={{ width: '70%', height: '100%' }}>
-                    <select value={style} onChange={handleStyleChange} style={{ position: 'absolute', zIndex: 10, top: '10px', left: '10px' }}>
+                    <select value={style} onChange={(e) => setStyle(e.target.value)} style={{ position: 'absolute', zIndex: 10, top: '10px', left: '10px' }}>
                         {Object.values(STYLE).map((style) => (
                             <option key={style} value={style}>
                                 {style}
@@ -86,7 +85,7 @@ const Map = ({ apiKey, coords = [] }) => {
                     {coords.map((coord, index) => (
                         <div
                             key={index}
-                            ref={(el) => (sectionRefs.current[index] = el)} 
+                            ref={(el) => (sectionRefs.current[index] = el)}
                             style={{
                                 marginBottom: '20px',
                                 padding: '10px',
@@ -97,13 +96,13 @@ const Map = ({ apiKey, coords = [] }) => {
                         >
                             <h3>Pin {index + 1}</h3>
                             <p>Coordinates: {coord[0]}, {coord[1]}</p>
-                            <p>Unique info for Pin {index + 1} here</p>
+                            <p><strong>Building:</strong> {buildingData[index]?.name || 'Loading...'}</p>
+                            <p><strong>Details:</strong> {buildingData[index]?.description || 'No details available'}</p>
                         </div>
                     ))}
 
-                    {/* BIG ASS PLUS BUTTON */}
                     <button 
-                        onClick={handleModalToggle} 
+                        onClick={() => setIsModalOpen(true)}
                         style={{
                             width: '100%',
                             height: '50px',
@@ -119,12 +118,11 @@ const Map = ({ apiKey, coords = [] }) => {
                 </div>
             </div>
 
-            {/* modal stuff */}
             {isModalOpen && (
                 <div style={modalBackdropStyle}>
                     <div style={modalContentStyle}>
                         <button 
-                            onClick={handleCloseModal} 
+                            onClick={() => setIsModalOpen(false)}
                             style={{
                                 position: 'absolute', 
                                 top: '10px', 
@@ -137,7 +135,7 @@ const Map = ({ apiKey, coords = [] }) => {
                         >
                             &times;
                         </button>
-                        <FormWrapper  apiKey={apiKey}> </FormWrapper>
+                        <FormWrapper apiKey={apiKey} />
                     </div>
                 </div>
             )}
@@ -145,7 +143,6 @@ const Map = ({ apiKey, coords = [] }) => {
     );
 };
 
- // bad styles
 const modalBackdropStyle = {
     position: 'fixed',
     top: 0,

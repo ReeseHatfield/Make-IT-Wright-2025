@@ -300,6 +300,21 @@
             "employee_list": {
                 "CEG": []
             }
+        },
+        {
+            "name": "NEW BUILDING",
+            "location": {
+                "latitude": 39.783467364157076,
+                "longitude": -84.05861527959786
+            },
+            "photo_path": "",
+            "desk_number": "",
+            "hours": "",
+            "description": "",
+            "rooms": [],
+            "employee_list": {
+                "CEG": []
+            }
         }
     ]
 }
