@@ -92,7 +92,7 @@ const Map = ({ apiKey, coords = [] }) => {
 
     return (
         <>
-            <div style={{ display: 'flex', width: '100%', height: '400px', position: 'relative' }}>
+            <div style={{ display: 'flex', width: '100%', height: '100%', position: 'absolute' }}>
                 <div style={{ width: '70%', height: '100%' }}>
                     <select value={style} onChange={handleStyleChange} style={{ position: 'absolute', zIndex: 10, top: '10px', left: '10px' }}>
                         {Object.values(STYLE).map((style) => (
@@ -223,9 +223,11 @@ const modalContentStyle = {
     backgroundColor: 'white',
     padding: '20px',
     borderRadius: '8px',
-    position: 'relative',
-    width: '400px',
+    position: 'absolute',
+    width: '30%',
+    height: '90%',
     maxWidth: '90%',
+    overflowY: 'auto',
 };
 
 export default Map;
