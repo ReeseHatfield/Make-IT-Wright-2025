@@ -3,7 +3,6 @@ from flask_cors import CORS
 import json
 import random
 import hashlib
-from geopy.distance import geodesic
 
 app = Flask(__name__)
 CORS(app)
@@ -11,13 +10,14 @@ CORS(app)
 # Reads in the local data.json file
 data = open('../data.json').read()
 directory = json.loads(data)
-uuid = None
+uuid = -1
 
 @app.route('/checkUser', methods=['POST'])
 def check_user():
-    route_uuid = request.args.get('uuid', type=str)
+    global uuid
+    route_uuid = request.json.get('uuid')
 
-    if route_uuid == uuid:
+    if int(route_uuid) == int(uuid):
         return jsonify({'message': 'true'})
     else:
         return jsonify({'message': 'false'})
@@ -27,6 +27,8 @@ def check_user():
 # Endpoint to add a new building
 @app.route('/authUser', methods=['POST'])
 def auth_user():
+    global uuid
+    global data
     new_user = request.get_json()
 
     # Validate required fields
@@ -39,18 +41,19 @@ def auth_user():
                 return jsonify({'message': f'Missing field: {field}'}), 400
             value = value[key]
 
-    username = request.args.get('username', type=str)
-    password = request.args.get('password', type=str)
+    username = new_user.get('username')
+    password = new_user.get('password')
     hash_object = hashlib.sha256(password.encode('utf-8'))
     hex_digest = hash_object.hexdigest()
 
-    if username in data:
-        password = data[username]
+    if username in directory:
+
+        password = directory[username]
         if password == hex_digest:
             uuid = random.randint(0, 1000000)
             return jsonify({'message': f'{uuid}'})
-    else:
-        return jsonify({'message': 'User && password not found'}), 404
+        else:
+            return jsonify({'message': 'User && password not found'})
 
 # Start the Flask app
 if __name__ == '__main__':
