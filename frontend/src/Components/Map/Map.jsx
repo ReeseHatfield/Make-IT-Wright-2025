@@ -11,6 +11,27 @@ const STYLE = {
     SATELLITE: 'satellite',
 };
 
+// Helper function to escape regex special characters.
+const escapeRegExp = (string) => {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+};
+
+// Helper function to highlight occurrences of query in text.
+const highlightText = (text, query) => {
+    if (!query || typeof text !== 'string') return text;
+    const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
+    const parts = text.split(regex);
+    return parts.map((part, i) =>
+        regex.test(part) ? (
+            <span key={i} style={{ backgroundColor: 'yellow' }}>
+                {part}
+            </span>
+        ) : (
+            part
+        )
+    );
+};
+
 const Map = ({ apiKey, coords = [] }) => {
     const mapContainer = useRef(null);
     const map = useRef(null);
@@ -91,17 +112,21 @@ const Map = ({ apiKey, coords = [] }) => {
         setIsModalOpen(false);
     };
 
-    // Filter the buildingData by checking all attributes.
-    // Converting the building object to a string ensures that nested data is searched as well.
-    const filteredBuildings = buildingData.filter(building => 
-        building && JSON.stringify(building).toLowerCase().includes(searchQuery.toLowerCase())
+    // Filter buildingData by checking all attributes in the stringified building data.
+    const filteredBuildings = buildingData.filter(building =>
+        building &&
+        JSON.stringify(building).toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     return (
         <>
             <div style={{ display: 'flex', width: '100%', height: '100%', position: 'absolute' }}>
                 <div style={{ width: '70%', height: '100%' }}>
-                    <select value={style} onChange={handleStyleChange} style={{ position: 'absolute', zIndex: 10, top: '10px', left: '10px' }}>
+                    <select
+                        value={style}
+                        onChange={handleStyleChange}
+                        style={{ position: 'absolute', zIndex: 10, top: '10px', left: '10px' }}
+                    >
                         {Object.values(STYLE).map((style) => (
                             <option key={style} value={style}>
                                 {style}
@@ -112,11 +137,11 @@ const Map = ({ apiKey, coords = [] }) => {
                 </div>
 
                 <div style={{ width: '30%', padding: '10px', overflowY: 'auto', height: '100%' }}>
-                    <input 
-                        type="text" 
-                        placeholder="Search buildings..." 
-                        value={searchQuery} 
-                        onChange={(e) => setSearchQuery(e.target.value)} 
+                    <input
+                        type="text"
+                        placeholder="Search buildings..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                         style={{ width: '100%', padding: '10px', marginBottom: '10px', border: '1px solid #ddd', borderRadius: '4px' }}
                     />
                     {filteredBuildings.map((building, index) => (
@@ -133,21 +158,46 @@ const Map = ({ apiKey, coords = [] }) => {
                         >
                             {building ? (
                                 <>
-                                    <h3>{building.name || `Pin ${index + 1}`}</h3>
-                                    <p><strong>Coordinates:</strong> {coords[index][0]}, {coords[index][1]}</p>
-                                    <p><strong>Description:</strong> {building.description}</p>
-                                    <p><strong>Hours:</strong> {building.hours}</p>
+                                    <h3>
+                                        {highlightText(building.name || `Pin ${index + 1}`, searchQuery)}
+                                    </h3>
+                                    <p>
+                                        <strong>Coordinates:</strong> {coords[index][0]}, {coords[index][1]}
+                                    </p>
+                                    <p>
+                                        <strong>Description:</strong>{' '}
+                                        {highlightText(building.description, searchQuery)}
+                                    </p>
+                                    <p>
+                                        <strong>Hours:</strong> {highlightText(building.hours, searchQuery)}
+                                    </p>
                                     {building.photo_path && (
-                                        <img src={building.photo_path} alt={building.name} style={{ width: '100%', maxHeight: '150px', objectFit: 'cover' }} />
+                                        <img
+                                            src={building.photo_path}
+                                            alt={building.name}
+                                            style={{ width: '100%', maxHeight: '150px', objectFit: 'cover' }}
+                                        />
                                     )}
                                     <h4>Rooms:</h4>
                                     {building.rooms && building.rooms.length > 0 ? (
                                         building.rooms.map((room, i) => (
                                             <div key={i} style={{ padding: '5px', borderBottom: '1px solid #ddd' }}>
-                                                <p><strong>Room Name:</strong> {room.name}</p>
-                                                <p><strong>Room Number:</strong> {room.room_number}</p>
-                                                <p><strong>Lead:</strong> {room.lead}</p>
-                                                <p><strong>Time:</strong> {room.time}</p>
+                                                <p>
+                                                    <strong>Room Name:</strong>{' '}
+                                                    {highlightText(room.name, searchQuery)}
+                                                </p>
+                                                <p>
+                                                    <strong>Room Number:</strong>{' '}
+                                                    {highlightText(String(room.room_number), searchQuery)}
+                                                </p>
+                                                <p>
+                                                    <strong>Lead:</strong>{' '}
+                                                    {highlightText(room.lead, searchQuery)}
+                                                </p>
+                                                <p>
+                                                    <strong>Time:</strong>{' '}
+                                                    {highlightText(room.time, searchQuery)}
+                                                </p>
                                             </div>
                                         ))
                                     ) : (
@@ -157,13 +207,25 @@ const Map = ({ apiKey, coords = [] }) => {
                                     {building.employee_list && Object.keys(building.employee_list).length > 0 ? (
                                         Object.entries(building.employee_list).map(([department, employees]) => (
                                             <div key={department}>
-                                                <h5>{department}</h5>
+                                                <h5>{highlightText(department, searchQuery)}</h5>
                                                 {employees.map((employee, i) => (
                                                     <div key={i} style={{ padding: '5px', borderBottom: '1px solid #ddd' }}>
-                                                        <p><strong>Name:</strong> {employee.name}</p>
-                                                        <p><strong>Office:</strong> {employee.office}</p>
-                                                        <p><strong>Phone:</strong> {employee.phone_number}</p>
-                                                        <p><strong>Hours:</strong> {employee.hours}</p>
+                                                        <p>
+                                                            <strong>Name:</strong>{' '}
+                                                            {highlightText(employee.name, searchQuery)}
+                                                        </p>
+                                                        <p>
+                                                            <strong>Office:</strong>{' '}
+                                                            {highlightText(employee.office, searchQuery)}
+                                                        </p>
+                                                        <p>
+                                                            <strong>Phone:</strong>{' '}
+                                                            {highlightText(employee.phone_number, searchQuery)}
+                                                        </p>
+                                                        <p>
+                                                            <strong>Hours:</strong>{' '}
+                                                            {highlightText(employee.hours, searchQuery)}
+                                                        </p>
                                                     </div>
                                                 ))}
                                             </div>
@@ -178,8 +240,8 @@ const Map = ({ apiKey, coords = [] }) => {
                         </div>
                     ))}
 
-                    <button 
-                        onClick={handleModalToggle} 
+                    <button
+                        onClick={handleModalToggle}
                         style={{
                             width: '100%',
                             height: '50px',
@@ -198,14 +260,14 @@ const Map = ({ apiKey, coords = [] }) => {
             {isModalOpen && (
                 <div style={modalBackdropStyle}>
                     <div style={modalContentStyle}>
-                        <button 
-                            onClick={handleCloseModal} 
+                        <button
+                            onClick={handleCloseModal}
                             style={{
-                                position: 'absolute', 
-                                top: '10px', 
-                                right: '10px', 
-                                background: 'transparent', 
-                                border: 'none', 
+                                position: 'absolute',
+                                top: '10px',
+                                right: '10px',
+                                background: 'transparent',
+                                border: 'none',
                                 fontSize: '20px',
                                 cursor: 'pointer',
                             }}
