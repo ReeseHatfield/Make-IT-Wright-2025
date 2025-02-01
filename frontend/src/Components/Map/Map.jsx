@@ -47,10 +47,27 @@ const Map = ({ apiKey, coords = [] }) => {
   const [expandedRooms, setExpandedRooms] = useState({});
   const [expandedEmployees, setExpandedEmployees] = useState({});
 
-
+    // const [center, setCenter] = useState([0, 0])
   const navigate = useNavigate();
   // Remove the hardcoded center:
-  // const initialCenter = [-84.063429, 39.782072];
+  const initialCenter = [-84.063429, 39.782072];
+
+    // const [center, setCenter] = useState(null);
+    // // Fetch the average center from the API.
+    // useEffect(() => {
+    // const fetchCenter = async () => {
+    //     try {
+    //     const res = await fetch('http://localhost:3000/average');
+    //     const data = await res.json();
+    //     // Ensure the order is [longitude, latitude]
+    //     setCenter([data.longitude, data.latitude]);
+    //     } catch (error) {
+    //     console.error('Error fetching center:', error);
+    //     }
+    // };
+    // fetchCenter();
+    // }, []);
+
 
   useEffect(() => {
     const fetchCenter = async () => {
@@ -101,7 +118,7 @@ const Map = ({ apiKey, coords = [] }) => {
 
   // Initialize the map once the center has been fetched.
   useEffect(() => {
-    if (map.current || !center) return;
+    if (map.current ) return;
 
     map.current = new maplibregl.Map({
       container: mapContainer.current,
