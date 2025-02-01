@@ -17,6 +17,18 @@ def getkey():
         'key': open('../key.txt').read()
     }
 
+@app.route('/getCoords', methods=['GET'])
+def get_locations():
+    # Extract location data from each building
+    locations = []
+    for building in directory["buildings"]:
+        location = building.get("location")
+        if location and isinstance(location["latitude"], float) and isinstance(location["longitude"], float):
+            locations.append(location)
+    
+    # Return the list of locations as a JSON response
+    return jsonify(locations)
+
 @app.route('/search', methods=['GET'])
 def search():
     search_string = request.args.get('query', '').lower()  # Get the search query from the request
@@ -147,12 +159,13 @@ def get_closest_building(lat, lon):
     min_distance = float('inf')  # Initialize with a very large number
 
     for building in directory['buildings']:
-        building_coords = (building['location']['latitude'], building['location']['longitude'])
-        distance = geodesic((lat, lon), building_coords).miles
+        if isinstance(building['location']["latitude"], float) and isinstance(building['location']["longitude"], float):
+            building_coords = (building['location']['latitude'], building['location']['longitude'])
+            distance = geodesic((lat, lon), building_coords).miles
         
-        if distance < min_distance:
-            min_distance = distance
-            closest_building = building
+            if distance < min_distance:
+                min_distance = distance
+                closest_building = building
 
     return closest_building
 
