@@ -137,13 +137,14 @@ const Map = ({ apiKey, coords = [] }) => {
                         >
                             &times;
                         </button>
-                        <FormWrapper />
+                        <FormWrapper  apiKey={apiKey}> </FormWrapper>
                     </div>
                 </div>
             )}
         </>
     );
 };
+
  // bad styles
 const modalBackdropStyle = {
     position: 'fixed',

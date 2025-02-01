@@ -135,6 +135,141 @@
                     }
                 ]
             }
+        },
+        {
+            "name": "Testname",
+            "location": {
+                "latitude": "ltatifi",
+                "longitude": "longjgfeij"
+            },
+            "photo_path": "PRETEND THIS IS A PATH",
+            "desk_number": "NUMBER",
+            "hours": "HSOUE",
+            "description": "SKAJDFLAKJSDFKLJ",
+            "rooms": [
+                {
+                    "name": "namemmymy",
+                    "lead": "lead",
+                    "time": "ETJWKFJ",
+                    "description": "KASDJFKJ",
+                    "room_number": "KSFJA9SDFJ"
+                }
+            ],
+            "employee_list": {
+                "CEG": [
+                    {
+                        "name": "JSKDFJAKSDFJ",
+                        "phone_number": "ASDF",
+                        "office": "QJAKSDJFLAKJ",
+                        "hours": "KJLFKSDJF"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "ASDFSADFJ",
+            "location": {
+                "latitude": "JIDJFIJFQI",
+                "longitude": "JISDJFIEJ"
+            },
+            "photo_path": "JIWFJIQEJF",
+            "desk_number": "JI",
+            "hours": "IWFJI",
+            "description": "WFJ",
+            "rooms": [],
+            "employee_list": {
+                "CEG": []
+            }
+        },
+        {
+            "name": "asdfjaksdjfk",
+            "location": {
+                "latitude": "jksdjfksdjf",
+                "longitude": "LOOKING"
+            },
+            "photo_path": "jsdkfj",
+            "desk_number": "k",
+            "hours": "wjk",
+            "description": "jfkfj",
+            "rooms": [],
+            "employee_list": {
+                "CEG": []
+            }
+        },
+        {
+            "name": "asdfjaksdjfk",
+            "location": {
+                "latitude": "jksdjfksdjf",
+                "longitude": "LOOKING"
+            },
+            "photo_path": "jsdkfjfasdfasdfasdf",
+            "desk_number": "k",
+            "hours": "QWERTY",
+            "description": "asdfjlaskdjflaksdjflkjasdf",
+            "rooms": [],
+            "employee_list": {
+                "CEG": []
+            }
+        },
+        {
+            "name": "",
+            "location": {
+                "latitude": "",
+                "longitude": "fwfqewfewf"
+            },
+            "photo_path": "efwewf",
+            "desk_number": "wef",
+            "hours": "wfwef",
+            "description": "",
+            "rooms": [],
+            "employee_list": {
+                "CEG": []
+            }
+        },
+        {
+            "name": "sdfjsdkfj",
+            "location": {
+                "latitude": "kjlkwjwl kfjwlk",
+                "longitude": "jf"
+            },
+            "photo_path": "wlfj",
+            "desk_number": "",
+            "hours": "",
+            "description": "",
+            "rooms": [
+                {
+                    "name": "",
+                    "lead": "",
+                    "time": "",
+                    "description": "",
+                    "room_number": ""
+                }
+            ],
+            "employee_list": {
+                "CEG": [
+                    {
+                        "name": "",
+                        "phone_number": "",
+                        "office": "",
+                        "hours": ""
+                    }
+                ]
+            }
+        },
+        {
+            "name": "asdfasdf",
+            "location": {
+                "latitude": 39.7825058884134,
+                "longitude": -84.06280672750765
+            },
+            "photo_path": "sdfsadf",
+            "desk_number": "",
+            "hours": "",
+            "description": "",
+            "rooms": [],
+            "employee_list": {
+                "CEG": []
+            }
         }
     ]
 }
