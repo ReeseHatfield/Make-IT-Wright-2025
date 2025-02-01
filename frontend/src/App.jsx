@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import Map from "./Components/Map/Map";
+import { BrowserRouter , Routes , Route } from 'react-router-dom'
+
 
 function App() {
   const [key, setKey] = useState(null);
@@ -25,11 +27,30 @@ function App() {
       .catch((error) => console.error("Error fetching API key:", error));
   }, []);
 
-  return (
-    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-      <h1>Data from Server</h1>
-      {key ? <Map apiKey={key} coords={coords} /> : <p>Loading...</p>}
-    </div>
+
+  
+
+  return( 
+    
+    <BrowserRouter>
+      <Routes>
+        <Route path="/home" element={
+            <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
+              <h1>Data from Server</h1>
+              {key ? <Map apiKey={key} coords={coords} /> : <p>Loading...</p>}
+            </div>
+        
+        }/>
+
+        <Route path="/login" element={
+          <h1> Pretend this sia  login screen</h1>
+        }/>
+        <Route path="/" element= {
+          <h1> Pretend this sia  login screen</h1>
+        }/>
+      </Routes>
+    </BrowserRouter>
+  
   );
 }
 
