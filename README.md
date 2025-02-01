@@ -18,6 +18,7 @@
 PineMap is a modular mapping system used to manage your campus, buildings, and employees.
 We offer a comprehensive solution for you to compartmentalize your data in an easily digestable and user-friendly manner.
 
-# Demonstration
+## Demonstration
 
+Check out the demonstration video [here](https://www.youtube.com/watch?v=iHJwXn6Rois)
 [![Watch the video](https://img.youtube.com/vi/iHJwXn6Rois/hqdefault.jpg)](https://www.youtube.com/watch?v=iHJwXn6Rois)
