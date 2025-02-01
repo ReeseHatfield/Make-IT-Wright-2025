@@ -26,3 +26,19 @@ services:
     command: ["gunicorn", "--bind", "0.0.0.0:3000", "app:app"]
     depends_on:
       - frontend
+      
+      
+  auth:
+    build:
+      context: ./auth
+      dockerfile: Dockerfile
+    ports:
+      - "6969:6969"
+    volumes:
+      - ./auth/app:/app
+      - /app/node_modules
+    environment:
+      - FLASK_ENV=development
+    command: ["gunicorn", "--bind", "0.0.0.0:6969", "app:app"]
+    depends_on:
+      - frontend
