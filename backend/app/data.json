@@ -315,6 +315,21 @@
             "employee_list": {
                 "CEG": []
             }
+        },
+        {
+            "name": "",
+            "location": {
+                "latitude": "",
+                "longitude": ""
+            },
+            "photo_path": "",
+            "desk_number": "",
+            "hours": "",
+            "description": "",
+            "rooms": [],
+            "employee_list": {
+                "CEG": []
+            }
         }
     ]
 }

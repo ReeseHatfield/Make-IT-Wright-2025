@@ -18,12 +18,12 @@ const Map = ({ apiKey, coords = [] }) => {
     const [selectedPin, setSelectedPin] = useState(null);
     const sectionRefs = useRef([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [buildingData, setBuildingData] = useState({});  
+    const [buildingData, setBuildingData] = useState([]);
 
     const initialCenter = [-84.063429, 39.782072];
 
     useEffect(() => {
-        if (map.current) return; 
+        if (map.current) return;
 
         map.current = new maplibregl.Map({
             container: mapContainer.current,
@@ -44,10 +44,8 @@ const Map = ({ apiKey, coords = [] }) => {
 
                 marker.getElement().addEventListener('click', () => {
                     setSelectedPin(index);
-                    sectionRefs.current[index]?.scrollIntoView({ behavior: 'smooth' });
+                    sectionRefs.current[index].scrollIntoView({ behavior: 'smooth' });
                 });
-
-                getBuildingFromCoord(coord[1], coord[0], index);
             });
         }
     }, [coords]);
@@ -58,20 +56,45 @@ const Map = ({ apiKey, coords = [] }) => {
         }
     }, [style]);
 
-    const getBuildingFromCoord = (lat, lon, index) => {
-        fetch(`http://localhost:3000/building/closest?lat=${lat}&lon=${lon}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setBuildingData((prev) => ({ ...prev, [index]: data }));
-            })
-            .catch((err) => console.error('Error fetching building data:', err));
+    useEffect(() => {
+        const fetchBuildingData = async () => {
+            const promises = coords.map(async ([lon, lat]) => {
+                try {
+                    const res = await fetch(`http://localhost:3000/building/closest?lat=${lat}&lon=${lon}`);
+                    const data = await res.json();
+                    return data;
+                } catch (error) {
+                    console.error("Error fetching building data:", error);
+                    return null;
+                }
+            });
+
+            const results = await Promise.all(promises);
+            setBuildingData(results);
+        };
+
+        if (coords.length > 0) {
+            fetchBuildingData();
+        }
+    }, [coords]);
+
+    const handleStyleChange = (e) => {
+        setStyle(e.target.value);
+    };
+
+    const handleModalToggle = () => {
+        setIsModalOpen((prev) => !prev);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
     };
 
     return (
         <>
             <div style={{ display: 'flex', width: '100%', height: '400px', position: 'relative' }}>
                 <div style={{ width: '70%', height: '100%' }}>
-                    <select value={style} onChange={(e) => setStyle(e.target.value)} style={{ position: 'absolute', zIndex: 10, top: '10px', left: '10px' }}>
+                    <select value={style} onChange={handleStyleChange} style={{ position: 'absolute', zIndex: 10, top: '10px', left: '10px' }}>
                         {Object.values(STYLE).map((style) => (
                             <option key={style} value={style}>
                                 {style}
@@ -82,7 +105,7 @@ const Map = ({ apiKey, coords = [] }) => {
                 </div>
 
                 <div style={{ width: '30%', padding: '10px', overflowY: 'auto', height: '100%' }}>
-                    {coords.map((coord, index) => (
+                    {buildingData.map((building, index) => (
                         <div
                             key={index}
                             ref={(el) => (sectionRefs.current[index] = el)}
@@ -94,15 +117,55 @@ const Map = ({ apiKey, coords = [] }) => {
                                 transition: 'background-color 0.3s',
                             }}
                         >
-                            <h3>Pin {index + 1}</h3>
-                            <p>Coordinates: {coord[0]}, {coord[1]}</p>
-                            <p><strong>Building:</strong> {buildingData[index]?.name || 'Loading...'}</p>
-                            <p><strong>Details:</strong> {buildingData[index]?.description || 'No details available'}</p>
+                            {building ? (
+                                <>
+                                    <h3>{building.name || `Pin ${index + 1}`}</h3>
+                                    <p><strong>Coordinates:</strong> {coords[index][0]}, {coords[index][1]}</p>
+                                    <p><strong>Description:</strong> {building.description}</p>
+                                    <p><strong>Hours:</strong> {building.hours}</p>
+                                    {building.photo_path && (
+                                        <img src={building.photo_path} alt={building.name} style={{ width: '100%', maxHeight: '150px', objectFit: 'cover' }} />
+                                    )}
+                                    <h4>Rooms:</h4>
+                                    {building.rooms && building.rooms.length > 0 ? (
+                                        building.rooms.map((room, i) => (
+                                            <div key={i} style={{ padding: '5px', borderBottom: '1px solid #ddd' }}>
+                                                <p><strong>Room Name:</strong> {room.name}</p>
+                                                <p><strong>Room Number:</strong> {room.room_number}</p>
+                                                <p><strong>Lead:</strong> {room.lead}</p>
+                                                <p><strong>Time:</strong> {room.time}</p>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <p>No rooms available.</p>
+                                    )}
+                                    <h4>Employees:</h4>
+                                    {building.employee_list && Object.keys(building.employee_list).length > 0 ? (
+                                        Object.entries(building.employee_list).map(([department, employees]) => (
+                                            <div key={department}>
+                                                <h5>{department}</h5>
+                                                {employees.map((employee, i) => (
+                                                    <div key={i} style={{ padding: '5px', borderBottom: '1px solid #ddd' }}>
+                                                        <p><strong>Name:</strong> {employee.name}</p>
+                                                        <p><strong>Office:</strong> {employee.office}</p>
+                                                        <p><strong>Phone:</strong> {employee.phone_number}</p>
+                                                        <p><strong>Hours:</strong> {employee.hours}</p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <p>No employees available.</p>
+                                    )}
+                                </>
+                            ) : (
+                                <p>Loading data...</p>
+                            )}
                         </div>
                     ))}
 
                     <button 
-                        onClick={() => setIsModalOpen(true)}
+                        onClick={handleModalToggle} 
                         style={{
                             width: '100%',
                             height: '50px',
@@ -122,7 +185,7 @@ const Map = ({ apiKey, coords = [] }) => {
                 <div style={modalBackdropStyle}>
                     <div style={modalContentStyle}>
                         <button 
-                            onClick={() => setIsModalOpen(false)}
+                            onClick={handleCloseModal} 
                             style={{
                                 position: 'absolute', 
                                 top: '10px', 
